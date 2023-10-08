@@ -7,19 +7,6 @@
 	src: url('/fonts/inter.ttf') format('truetype');
 	font-weight: 100 1000;
 }
-// Serif - Soruce Serif
-@font-face {
-	font-family: 'Source Serif';
-	src: url('/fonts/sourceSerif.ttf') format('truetype');
-	font-weight: 100 1000;
-}
-// Mono - Source Code
-@font-face {
-	font-family: 'Source Code';
-	src: url('/fonts/sourceCode.ttf') format('truetype');
-	font-weight: 100 1000;
-}
-
 
 // Screen Sizes
 // Screen Sizes
@@ -37,8 +24,8 @@ $screenXXL: 1800px;
 	--baseFontSize: 1em;
 	--primaryFont: var(--sans);
 	--sans:  "Inter", sans-serif;
-	--monospace: "Source Code", monospace;
-	--serif: "Source Serif", serif;
+	--monospace: monospace;
+	--serif: serif;
 	--systemFont: -apple-system, BlinkMacSystemFont, "Segoe UI", "Verdana", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 	
 	// Transitions
@@ -133,7 +120,7 @@ $screenXXL: 1800px;
 	--grey2: #dfe4f4;
 	--grey2c: #0e111b;
 
-	--dark1: #414156;
+	--dark1: #22222e;
 	--dark1c: #FFFFFF;
 	--dark2: #414156;
 	--dark2c: #FFFFFF;

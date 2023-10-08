@@ -25,7 +25,7 @@
 
 
 	<!-- Info Callout -->
-	<div class="callout bg-blue fit margin-auto mbottom-md">
+	<div class="callout bg-grey fit margin-auto mbottom-md">
 		<i class="iconoir-chat-bubble callout-icon"/>
 		<p>
 			<!-- <b class="text-bigger block">License Plate Messaging</b> -->

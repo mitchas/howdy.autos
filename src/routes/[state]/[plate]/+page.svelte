@@ -151,15 +151,15 @@
 			
 			<!-- Message -->
 			<label for="newMessage">Leave a message</label>
-			<textarea id="newMessage" bind:value={newMessageText} placeholder="Your drive side tail light is out..."/>
+			<textarea id="newMessage" bind:value={newMessageText} placeholder="Your drive side tail light is out..." disabled={messageSuccess}/>
 			
 			<!-- From -->
 			<label for="newMessageNameInput">From - Your display name</label>
-			<input type="text" maxlength="34" id="newMessageNameInput" placeholder="Guy you parked next to at target" bind:value="{newMessageName}"/>
+			<input type="text" maxlength="34" id="newMessageNameInput" placeholder="Guy you parked next to at target" bind:value="{newMessageName}" disabled={messageSuccess}/>
 
 			<!-- Submit -->
-			<button type="submit" class="button green mtop-xs" disabled={newMessageText.length<5 || newMessageName.length < 2}>
-				Submit Message
+			<button type="submit" class="button green mtop-xs" disabled={messageSuccess || newMessageText.length<5 || newMessageName.length < 2}>
+				{messageSuccess ? 'Message Submitted' : 'Submit Message'}
 			</button>
 		</form>
 
@@ -172,7 +172,8 @@
 			{#each allMessages as messageData, key}
 				<div class="single-message">
 					<p>On 
-						<Time timestamp={messageData.created_at}  format="dddd MMMM DD @ h:mma"/>,
+						<Time timestamp={messageData.created_at}  format="dddd, MMMM DD"/> at
+						<Time timestamp={messageData.created_at}  format="h:mma"/>,
 						<b>{messageData.display_name}</b> posted</p>
 					<blockquote>
 						<p>{messageData.message}</p>
@@ -184,7 +185,7 @@
 			{#if messageSuccess}
 				<div class="single-message">
 					<p>You 
-						()<b>{messageSuccess.display_name}</b>) just posted</p>
+						(<b>{messageSuccess.display_name}</b>) just posted</p>
 					<blockquote>
 						<p>{messageSuccess.message}</p>
 					</blockquote>
