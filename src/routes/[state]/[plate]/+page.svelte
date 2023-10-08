@@ -151,7 +151,7 @@
 			
 			<!-- Message -->
 			<label for="newMessage">Leave a message</label>
-			<textarea id="newMessage" bind:value={newMessageText} placeholder="Your drive side tail light is out..." disabled={messageSuccess}/>
+			<textarea id="newMessage" bind:value={newMessageText} placeholder="Your driver side tail light is out..." disabled={messageSuccess}/>
 			
 			<!-- From -->
 			<label for="newMessageNameInput">From - Your display name</label>
