@@ -8,6 +8,7 @@
 	let selectedState = "";
 	let plateNumber = "";
 
+	// Go to /<STATE ABBR>/<PLATE NUMBER>/
 	function goToPlate() {
 		goto("/" + selectedState + "/" + plateNumber.replace(/[^a-z0-9]/gi, '').toUpperCase());
 		// goto("/" + selectedState.toUpperCase() + "/" + plateNumber.toUpperCase());
@@ -18,7 +19,6 @@
 	<title>Howdy Autos</title>
 	<meta name="description" content="Howdy.autos" />
 </svelte:head>
-
 
 
 <section class="view-padded"> 
@@ -33,9 +33,11 @@
 		</p>
 	</div>
 
+
+	<!-- form -->
 	<form on:submit|preventDefault={goToPlate}>
 
-
+		<!-- State Picker -->
 		<div class="mw-200 margin-auto mbottom-sm" id="stateSelector">
 			<select class="center margin-auto" bind:value={selectedState}>
 				<option value="">Choose a State</option>
@@ -106,13 +108,16 @@
 			<!-- <img src={background} alt="License Plate Design"/> -->
 			<Plate bind:abbr={selectedState}/>
 
+			<!-- Input -->
 			<div id="HomePlateInputWrapper">
 				{#if selectedState}
-					<input type="text" placeholder="ABC123" maxlength=8 bind:value={plateNumber} class="text-{selectedState}"/>
+					<input type="text" placeholder="ABC123" maxlength=8 bind:value={plateNumber} class="text-{selectedState} {plateNumber.length < 7 ? 'short-plate' : ''}"/>
 				{/if}
 			</div>
+
 		</div>
 
+		<!-- Submit / Find Plate -->
 		<div class="mw-200 center margin-auto mtop-sm">
 			<button class="button bigger dark" id="findPlateButton" disabled={!selectedState || plateNumber.length <= 1}>
 				<div class="flex gap-sm">
@@ -128,7 +133,7 @@
 		
 
 
-
+	<!-- Footer -->
 	<p class="small center mtop-xl margin-auto">
 		A weird little app from <a href="https://hotdi.sh" target="_blank">hotdi.sh</a>
 		<small class="block text-smaller flex gap center">
@@ -223,6 +228,10 @@
 			}
 			@media (max-width: 350px) {
 				font-size: 48px;
+			}
+
+			&.short-plate{
+				transform: scale(1.2, 1.4);
 			}
 		}
 	}

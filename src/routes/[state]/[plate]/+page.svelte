@@ -8,13 +8,11 @@
 	import Modal from "../../../components/Modal.svelte";
 	import Time from "svelte-time";
 
-
-
+	// Page Title
 	import { page_title } from '../../../stores/ui.store.js';
 	$page_title = $page.params.state + "-" + $page.params.plate;
 
-
-
+	// Definitions
 	let abbreviations = [
 		"AL", "AK", "AZ", "AR", "CA", "CO", "CT", 
 		"DE", "FL", "GA", "HI", "ID", "IL", "IN", "IA", "KS",
@@ -32,34 +30,36 @@
 		"Federal Government", "American Samoa", "Guam", "Northern Mariana Islands", "Puerto Rico", "US Virgin Islands"
 	]
 
+	// Params - passed state and plate
 	let state = "";
 	let plate = "";
 	$: state = $page.params.state ? $page.params.state.toUpperCase() : '';
 	$: plate = $page.params.plate ? $page.params.plate.toUpperCase() : '';
 
+	// New Message
 	let newMessageText = "";
 	let newMessageName = "";
 	let robotCheck = "";
 
+	// Rules Modal
 	let modalCurrentlyVisible = false;
 	
+	// Submitting Message
 	let isLoading = false;
-
-	let allMessages = [];
 	let messageSuccess = null;
+
+	// Loaded Messages
+	let allMessages = [];
 	
 	// Show Terms / Rules
 	function showTerms(){
-
-		// First, check message
-		let textToCheck = newMessageText;
-
 		modalCurrentlyVisible = true;
 	}
 
 	// Submit message to Database
 	function submitMessage(){
 
+		// Create Message
 		let messageData = {
 			message: newMessageText,
 			display_name: newMessageName,
@@ -70,6 +70,7 @@
 		console.log("Posting message ", messageData)
 		isLoading = true;
 
+		// Submit to DB
 		supabase.from('messages').insert(messageData).then(function (returnData) {
 			// Errors
 			if (returnData.error) {
@@ -109,6 +110,7 @@
 	});
 
 
+	// Fetch all messsages with state and plate #
 	function fetchMessages(){
 
 		supabase.from('messages').select('*').eq('state', state).eq('plate_number', plate).then(function (data) {
@@ -129,6 +131,7 @@
 	}
 
 
+	// Report Message
 	let reportedMessages = [];
 	async function reportMessage(message_id, message_flags){
 		const { error } = await supabase.from('messages').update({ flags: message_flags+1 }).eq('id', message_id)
@@ -148,12 +151,17 @@
 			reportedMessages = [...reportedMessages, message_id];
 		}
 	}
+
 </script>
 
+
+
 <svelte:head>
-	<title>{state + "-" + plate} - howdy.autos</title>
+	<title>{state ? state + "-" + plate : "Howdy Autos"} - howdy.autos</title>
 	<meta name="description" content="Svelte demo app" />
 </svelte:head>
+
+
 
 <div class="margin-auto mw-600">
 	<section class="view-padded">
@@ -161,11 +169,13 @@
 		<!-- Header -->
 		<div class="message-page-header flex-wrap">
 
+			<!-- Plate -->
 			<div class="small-plate-display">
 				<Plate bind:abbr={state}/>
-				<b class="text-{state}">{plate}</b>
+				<b class="text-{state} {plate.length < 7 ? 'short-plate' : ''} ">{plate}</b>
 			</div>
 
+			<!-- Text -->
 			<p class="bigger center">
 				<span>Messages for <b>{fullnames[abbreviations.indexOf(state)]}</b> plate <b>#{plate}</b></span>
 			</p>
@@ -193,10 +203,14 @@
 
 
 
+		<!-- Messages -->
+		<!-- Messages -->
+		<!-- Messages -->
 		<h4 id="messageHeader">Messages</h4>
 
 		{#if allMessages.length || messageSuccess}
 
+		<!-- Message loop -->
 		<div class="all-messages">
 			{#each allMessages as messageData, key}
 				<div class="single-message">
@@ -254,7 +268,9 @@
 			<input type="text" placeholder="Robot Check" class="center" bind:value="{robotCheck}"/>
 			<div class="flex vertical gap-sm mtop-sm">
 				<button class="button green" on:click={()=>submitMessage()} disabled={robotCheck != 'spooky' || isLoading}>{isLoading ? "Loading..." : "Agreed. Submit my message"}</button>
-				<button class="button grey" type="button" on:click={()=>modalCurrentlyVisible = false}>Cancel. Go back and edit it</button>
+				<button class="button grey" type="button" on:click={()=>modalCurrentlyVisible = false}>
+					<span class="lightweight"> Go back and edit it</span>
+				</button>
 			</div>
 		</div>
 	</Modal>
@@ -263,6 +279,7 @@
 
 
 
+<!-- Footer -->
 <p class="small center mtop-xl margin-auto">
 	A weird little app from <a href="https://hotdi.sh" target="_blank">hotdi.sh</a>
 	<small class="block text-smaller flex gap center">
@@ -284,11 +301,18 @@
 	.small-plate-display{
 		display: flex;
 		margin: 0 auto;
+		justify-content: center;
 		position: relative;
 		width: 98%;
 		max-width: 300px;
 		height: auto;
 		height: 150px;
+		padding: 0;
+
+		object, img{
+			width: 100%;
+			margin: 0 auto;
+		}
 
 
 		@media (max-width: 430px) {
@@ -299,7 +323,7 @@
 			color: #FFFFFF;
 			position: absolute;
 			top: 0;
-			font-size: 34px;
+			font-size: 44px;
 			font-weight: 800;
 			width: 100%;
 			height: 100%;
@@ -308,6 +332,11 @@
 			justify-content: center;
 			text-align: center;
 			color: var(--text);
+			transform: scaleY(1.2);
+
+			&.short-plate{
+				font-size: 60px;
+			}
 		}
 	}
 
