@@ -1,18 +1,15 @@
-# Howdy.autos
-A website to explore things in MN.
+# howdy.autos
+leave messages for license plates (US)
 
 ## Built With
-
 * [Svelte](https://svelte.dev) - Framework
-* [Supabase](supabase.com) - Backend - auth, DB, Storage
-* No frontend/CSS frameworks or plugins, all in-house
+* [Supabase](supabase.com) - Backend - DB, Storage
+* No frontend/CSS frameworks
 
 ### Third-party packages:
  * [DayJS](https://day.js.org/) for Dates
  * [Numeral.js](http://numeraljs.com/) for Number stuff
  * [Iconoir](https://iconoir.com/) icons
- * [PositionStack](https://positionstack.com/) geocoding
- * [Leaflet](https://leafletjs.com/) maps
 
 &nbsp;
 
@@ -57,6 +54,3 @@ npm run build-prod
 ```
 
 You can preview the production build with `npm run preview`.
-
-
-<!-- > To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment. -->
