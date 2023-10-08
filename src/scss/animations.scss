@@ -1,0 +1,16 @@
+// Animations
+
+.light-pulse{
+	animation: lightpulse 1.75s ease infinite;
+}
+@keyframes lightpulse {
+	0% {
+		filter: brightness(100%);
+	}
+	50% {
+		filter: brightness(115%);
+	}
+	100% {
+		filter: brightness(100%);
+	}
+  }

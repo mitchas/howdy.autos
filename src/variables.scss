@@ -1,0 +1,164 @@
+/* Variables and mixins declared here will be available in all other SCSS files */
+
+// Fonts - Variable
+// Sans - Inter
+@font-face {
+	font-family: 'Inter';
+	src: url('/fonts/inter.ttf') format('truetype');
+	font-weight: 100 1000;
+}
+// Serif - Soruce Serif
+@font-face {
+	font-family: 'Source Serif';
+	src: url('/fonts/sourceSerif.ttf') format('truetype');
+	font-weight: 100 1000;
+}
+// Mono - Source Code
+@font-face {
+	font-family: 'Source Code';
+	src: url('/fonts/sourceCode.ttf') format('truetype');
+	font-weight: 100 1000;
+}
+
+
+// Screen Sizes
+// Screen Sizes
+// Screen Sizes
+$screenSM: 880px;
+$screenLG: 1020px;
+$screenXL: 1400px;
+$screenXXL: 1800px;
+
+
+
+
+//  Root variables can be toggled by themes
+:root {
+	--baseFontSize: 1em;
+	--primaryFont: var(--sans);
+	--sans:  "Inter", sans-serif;
+	--monospace: "Source Code", monospace;
+	--serif: "Source Serif", serif;
+	--systemFont: -apple-system, BlinkMacSystemFont, "Segoe UI", "Verdana", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+	
+	// Transitions
+	--transition: 0.1s;
+
+	// Gap Size
+	--gap: 20px;
+
+	// Sizes
+	--inputHeight: 42px;
+	--topBarHeight: 56px;
+	--bottomBarHeight: 0;
+	@media (max-width: $screenSM) {
+		--inputHeight: 44px;
+		--topBarHeight: 50px;
+		--bottomBarHeight: 50px;
+
+		// Add extra space on standalone for swipe bar
+		@media (display-mode: standalone) {
+			--bottomBarHeight: 80px;
+		}
+	}
+
+	--padding: 30px;
+	@media (max-width: $screenSM) {--padding: 12px;}
+
+
+
+
+	--heavyweight: 600;
+	--lightweight: 500;
+
+	// Measurements
+	--borderWidth: 1px;
+	--borderRadius: 6px;
+
+	// Backgrounds
+	--pageBackground: #ffffff;
+	--background: #ffffff;
+	--backdrop: rgba(30, 30, 40, 0.75);
+
+	// Text
+	--text: #222238;
+	--textLight: #6f6f7a;
+	--textLighter: #9d9da8;
+	--textDark: #000000;
+
+	--outline: var(--primary1);
+
+	--primary1: var(--blue1);
+	--primary1c: var(--blue1c);
+	--primary2: var(--blue2);
+	--primary2c: var(--blue2c);
+
+	--red1: #FF4548;
+	--red1c: #ffffff;
+	--red2: #ffebeb;
+	--red2c: #520001;
+
+	--orange1: #FF7A3C;
+	--orange1c: #ffffff;
+	--orange2: #ffe3d6;
+	--orange2c: #521a00;
+
+	--yellow1: #ffe11b;
+	--yellow1c: #3d3500;
+	--yellow2: #fff7c2;
+	--yellow2c: #3d3500;
+
+	--green1: #00b881;
+	--green1c: #ffffff;
+	--green2: #c2ffed;
+	--green2c: #00291d;
+
+	--blue1: #0AA9FF;
+	--blue1c: #ffffff;
+	--blue2: #C2EAFF;
+	--blue2c: #00133d;
+
+	--purple1: #bc4fff;
+	--purple1c: #ffffff;
+	--purple2: #f7ebff;
+	--purple2c: #320052;
+
+	--pink1: #de66b4;
+	--pink1c: #ffffff;
+	--pink2: #ffebf8;
+	--pink2c: #520036;
+
+	--grey1: #83899c;
+	--grey1c: #0e111b;
+	--grey2: #dfe4f4;
+	--grey2c: #0e111b;
+
+	--dark1: #414156;
+	--dark1c: #FFFFFF;
+	--dark2: #414156;
+	--dark2c: #FFFFFF;
+
+	--light1: #F7F8FA;
+	--light1c: #151b29;
+	--light2: #f9fafc;
+	--light2c: #151b29;
+
+	// Blacks, Whites
+	--black: #07071a;
+	--white: #ffffff;
+
+	--border: rgba(28, 27, 31, 0.4);
+	--borderLight: rgba(28, 27, 40, 0.1);
+	--borderDark: rgba(28, 27, 31, 0.6);
+
+	// Shadows
+	--shadow: rgba(0, 0, 50, 0.1) 0px 4px 8px;
+	--shadowSmall: 1px 2px 4px rgb(0, 0, 0, 0.05);
+
+	// Logo Colors
+	--logoStroke: var(--text);
+	--logoColor1: var(--red1);
+	--logoColor2: var(--blue1);
+	--logoColor3: var(--green1);
+
+}
