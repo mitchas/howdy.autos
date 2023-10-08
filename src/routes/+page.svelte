@@ -157,6 +157,18 @@
 		background-repeat: no-repeat;
 		background-position: center center;
 		position: relative;
+		height: fit-content;
+		max-height: fit-content;
+
+		@media (max-width: 650px) {
+			height: 300px;
+		}
+		@media (max-width: 500px) {
+			height: 250px;
+		}
+		@media (max-width: 430px) {
+			height: 210px;
+		}
 
 		img{
 			display: block;
