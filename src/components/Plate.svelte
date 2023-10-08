@@ -133,13 +133,15 @@
 
 
 
-<img src={background} alt="License Plate Design"/>
+<!-- <img src={background} alt="License Plate Design"/> -->
+<object data={background} title="License Plate Design" type="image/svg+xml"/>
 
 
 
 <style lang="scss">
 	
-	img{
+	img,
+	object{
 		display: block;
 		max-width: 100%;
 		height: auto;
