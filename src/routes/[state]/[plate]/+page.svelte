@@ -207,7 +207,8 @@
 					<blockquote>
 						<p>{messageData.message}</p>
 					</blockquote>
-					<button class="flag-button" on:click={()=>reportMessage(messageData.id, messageData.flags)} disabled={reportedMessages.includes(messageData.id)}>
+					<!-- Report -->
+					<button class="report-button" on:click={()=>reportMessage(messageData.id, messageData.flags)} disabled={reportedMessages.includes(messageData.id)}>
 						{reportedMessages.includes(messageData.id) ? "Reported 👍" : "Report"}
 					</button>
 				</div>
@@ -360,10 +361,11 @@
 	}
 
 
-	.flag-button{
+	.report-button{
 		color: var(--red1);
 		font-size: 0.8rem;
 		float: right;
+		font-weight: 550;
 		opacity: 0.4;
 
 		&:hover,

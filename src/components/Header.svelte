@@ -34,16 +34,24 @@
 		border-bottom: var(--borderWidth) solid var(--borderLight);
 		box-sizing: border-box;
 		justify-content: center;
+		position: fixed;
+		top: 0;
 		// position: sticky;
 		// top: 0;
 		background-color: var(--background);
-		// z-index: 50;
+		z-index: 100;
 		#logo {
 			img,object{
 				height: 56px;
 				width: auto;
 				box-sizing: border-box;
 				padding: 16px;
+
+				@media (max-width: $screenSM) {
+					padding: 0px 0 0 0;
+					height: 28px;
+					margin: 10px 0 0 0;
+				}
 			}
 		}
 

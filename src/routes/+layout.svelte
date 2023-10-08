@@ -25,11 +25,6 @@
 	import '../../node_modules/line-awesome/dist/line-awesome/css/line-awesome.min.css';
 	import '../../node_modules/iconoir/css/iconoir.css';
 
-	// let windowHeight = window.innerHeight;
-	// console.log(windowHeight)
-	$: innerHeight = 0;
-
-
 	// For route transitions
 	export let data
 
@@ -47,10 +42,9 @@
 
 
 
-<svelte:window bind:innerHeight />
 
 
-<div id="app" style="max-height: {innerHeight}px;">
+<div id="app">
 
 	<!-- UI -->
 	<Alert />
@@ -61,7 +55,7 @@
 	{/if}
 
 
-	<div id="content" style="max-height: {innerHeight}px;">
+	<div id="content">
 		<Header />
 
 			<!-- For page transitions -->
@@ -69,8 +63,8 @@
 
 				{#key data.pathname}
 					<main id="scrollBox"
+						style="padding-top: 70px;"
 						in:fade={{ duration: 100, delay: 200 }} out:fade={{ duration: 100 }}
-						style="max-height: calc({innerHeight}px - var(--topBarHeight)); min-height: calc({innerHeight}px - var(--topBarHeight));"
 					>
 						<slot />
 
