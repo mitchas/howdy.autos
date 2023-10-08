@@ -40,7 +40,7 @@
 
 <svelte:head>
 	<!-- Umami -->
-	<script async src="https://hi.Howdy.autos/script.js" data-website-id="{umami_id}"></script>
+	<script async src="https://hi.things.mn/script.js" data-website-id="{umami_id}"></script>
 </svelte:head>
 
 
