@@ -20,7 +20,7 @@
 
 
 	<p class="no-padding mtop-md">
-		Howdy.autos's Privacy Policy was last updated and went into effect:
+		Howdy.autos' Privacy Policy was last updated and went into effect:
 	</p>
 	<div class="tag left red">October 8, 2023</div>
 
@@ -32,7 +32,7 @@
 	</h2>
 		<ul>
 			<li>We only collect basic pageview tracking data. Not even enough to warrant one of those annoying cookie popups.</li>
-			<li>Everything entered here is public and vieable by anyone else.</li>
+			<li>Everything entered here is public and viewable by anyone else.</li>
 			<li>We don't use any third-party tracking or analytics like Google or Meta Pixel. Our tracking is minimal and in-house.</li>
 		</ul>
 

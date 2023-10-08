@@ -10,9 +10,8 @@
 <header id="top">
 	<!-- Logo -->
 	<a href="/" id="logo">
-		<!-- <img src={logo} alt="Howdy.autos"/> -->
-		<!-- svelte-ignore a11y-missing-attribute -->
-		<object data={logo} type="image/svg+xml" title="Howdy.autos logo"/>
+		<img src={logo} alt="Howdy.autos"/>
+		<!-- <object data={logo} type="image/svg+xml" title="Howdy.autos logo"/> -->
 	</a>
 
 	<!-- Title -->
@@ -41,7 +40,7 @@
 		// z-index: 50;
 		#logo {
 			img,object{
-				height: 100%;
+				height: 56px;
 				width: auto;
 				box-sizing: border-box;
 				padding: 16px;

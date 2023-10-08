@@ -9,7 +9,7 @@
 	let plateNumber = "";
 
 	function goToPlate() {
-		goto("/" + selectedState + "/" + plateNumber);
+		goto("/" + selectedState + "/" + plateNumber.replace(/[^a-z0-9]/gi, '').toUpperCase());
 		// goto("/" + selectedState.toUpperCase() + "/" + plateNumber.toUpperCase());
 	}
 </script>
@@ -36,7 +36,7 @@
 	<form on:submit|preventDefault={goToPlate}>
 
 
-		<div class="mw-200 margin-auto mbottom-sm">
+		<div class="mw-200 margin-auto mbottom-sm" id="stateSelector">
 			<select class="center margin-auto" bind:value={selectedState}>
 				<option value="">Choose a State</option>
 				<option value="AL">Alabama</option>
@@ -144,6 +144,11 @@
 
 <style lang="scss">
 
+	#stateSelector{
+		position: relative;
+		z-index: 50;
+	}
+
 	#HomePlateDisplay{
 		display: block;
 		height: auto;
@@ -159,15 +164,18 @@
 		position: relative;
 		height: fit-content;
 		max-height: fit-content;
+		width: 98%;
+		max-width: 660px;
 
-		@media (max-width: 650px) {
-			height: 300px;
-		}
-		@media (max-width: 500px) {
-			height: 250px;
-		}
+		// @media (max-width: 650px) {
+		// 	height: 300px;
+		// }
+		// @media (max-width: 500px) {
+		// 	height: 250px;
+		// }
 		@media (max-width: 430px) {
-			height: 210px;
+			// height: 210px;
+			max-height: 200px;
 		}
 
 		img{

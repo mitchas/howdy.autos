@@ -6,11 +6,14 @@
 	import { alert } from '../../../stores/ui.store.js';
 	import { goto } from '$app/navigation';
 	import Modal from "../../../components/Modal.svelte";
-
 	import Time from "svelte-time";
+
+
 
 	import { page_title } from '../../../stores/ui.store.js';
 	$page_title = $page.params.state + "-" + $page.params.plate;
+
+
 
 	let abbreviations = [
 		"AL", "AK", "AZ", "AR", "CA", "CO", "CT", 
@@ -47,6 +50,10 @@
 	
 	// Show Terms / Rules
 	function showTerms(){
+
+		// First, check message
+		let textToCheck = newMessageText;
+
 		modalCurrentlyVisible = true;
 	}
 
@@ -120,6 +127,27 @@
 		});
 
 	}
+
+
+	let reportedMessages = [];
+	async function reportMessage(message_id, message_flags){
+		const { error } = await supabase.from('messages').update({ flags: message_flags+1 }).eq('id', message_id)
+		if (error) {
+			console.error(error);
+			$alert = {
+				text: error.message || 'Something went wrong',
+				class: 'red',
+				icon: 'la la-exclamation-circle'
+			};
+		} else {
+			$alert = {
+				text: 'Thanks for reporting!',
+				class: 'green',
+				icon: 'la la-check-circle'
+			};
+			reportedMessages = [...reportedMessages, message_id];
+		}
+	}
 </script>
 
 <svelte:head>
@@ -168,6 +196,7 @@
 		<h4 id="messageHeader">Messages</h4>
 
 		{#if allMessages.length || messageSuccess}
+
 		<div class="all-messages">
 			{#each allMessages as messageData, key}
 				<div class="single-message">
@@ -178,14 +207,18 @@
 					<blockquote>
 						<p>{messageData.message}</p>
 					</blockquote>
+					<button class="flag-button" on:click={()=>reportMessage(messageData.id, messageData.flags)} disabled={reportedMessages.includes(messageData.id)}>
+						{reportedMessages.includes(messageData.id) ? "Reported 👍" : "Report"}
+					</button>
 				</div>
 			{/each}
+
+
 
 			<!-- New posted message -->
 			{#if messageSuccess}
 				<div class="single-message">
-					<p>You 
-						(<b>{messageSuccess.display_name}</b>) just posted</p>
+					<p>You (<b>{messageSuccess.display_name}</b>) just posted</p>
 					<blockquote>
 						<p>{messageSuccess.message}</p>
 					</blockquote>
@@ -193,8 +226,11 @@
 			{/if}
 		</div>
 		{:else}
-			<p class="big center text-red mtop-md bold">No messages have been left for this plate yet.</p>
+			<div class="all-messages">
+				<p class="big center text-red mtop-md bold">No messages have been left for this plate yet.</p>
+			</div>
 		{/if}
+
 
 	</section>
 </div>
@@ -248,8 +284,15 @@
 		display: flex;
 		margin: 0 auto;
 		position: relative;
-		width: 200px;
-		height: fit-content;
+		width: 98%;
+		max-width: 300px;
+		height: auto;
+		height: 150px;
+
+
+		@media (max-width: 430px) {
+
+		}
 
 		b{
 			color: #FFFFFF;
@@ -287,10 +330,11 @@
 		background-color: var(--grey2);
 		box-sizing: border-box;
 		padding: 15px;
-		border-radius: var(--borderRadius);
 		margin-top: 80px;
 		font-size: 20px;
 		font-weight: 500;
+		border-radius: var(--borderRadius);
+		margin-bottom: 20px;
 	}
 
 
@@ -299,7 +343,7 @@
 		flex-direction: column-reverse;
 	}
 	.single-message{
-		margin-top: 45px;
+		margin-bottom: 45px;
 
 		p.small{
 			font-family: var(--monospace);
@@ -314,5 +358,30 @@
 			}
 		}
 	}
+
+
+	.flag-button{
+		color: var(--red1);
+		font-size: 0.8rem;
+		float: right;
+		opacity: 0.4;
+
+		&:hover,
+		&:focus{
+			opacity: 1;
+			text-decoration: underline;
+		}
+
+		&:disabled{
+			color: var(--text);
+			opacity: 0.5;
+			&:hover,
+			&:focus{
+				opacity: 0.5;
+				text-decoration: none;
+			}
+		}
+	}
+ 
 	
 </style>
